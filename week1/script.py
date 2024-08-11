@@ -21,8 +21,7 @@ models = [
 ]
 
 
-def generate(model, query):
-
+def generate(model, query, temperature):
     response = groq_client.chat.completions.create(
         model = model,
         messages = [
@@ -30,13 +29,14 @@ def generate(model, query):
             {'role': 'user', 'content': query},
         ],
     response_format = {'type': 'text'},
-    temperature = 1.0 
+    temperature = temperature
 
 )
     answer = response.choices[0].message.content
     return answer
 
 if __name__ == '__main__':
-    query = 'tell me about RNN"s'
+    query = 'in 100 words tell me about yourself'
     model = models[1]
-    print(generate(model, query))
+    temperature = 0.2
+    print(generate(model, query, temperature))
