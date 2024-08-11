@@ -1,4 +1,3 @@
 .new_env
 .env
-/pycache/*
-.gitignore
+__pycache__/
